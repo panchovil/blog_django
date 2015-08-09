@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block titulo %}
+<title>Calculadora</title>
+{% endblock %}
+{% block title %}
+Calculadora
+{% endblock %}
+{% block content %}
+        <div class="container">
+            <div style="text-align:center">
+
+                <div class="row center" style="width:200px;"><input disabled value="0" id="display" style="text-align:center; margin-left:180%;" type="text" class="validate white-text"> <br></div>
+                <a type="button" value="1" onclick="calcular(this)"class="waves-effect waves-light btn">1</a>
+                <a type="button" value="2" onclick="calcular(this)"class="waves-effect waves-light btn">2</a>
+                <a type="button" value="3" onclick="calcular(this)"class="waves-effect waves-light btn">3</a>
+                <a type="button" value="+" onclick="calcular(this)"class="waves-effect waves-light btn">+</a><br>
+                <a type="button" value="4" onclick="calcular(this)"class="waves-effect waves-light btn">4</a>
+                <a type="button" value="5" onclick="calcular(this)"class="waves-effect waves-light btn">5</a>
+                <a type="button" value="6" onclick="calcular(this)"class="waves-effect waves-light btn">6</a>
+                <a type="button" value="-" onclick="calcular(this)"class="waves-effect waves-light btn">-</a><br>
+                <a type="button" value="7" onclick="calcular(this)"class="waves-effect waves-light btn">7</a>
+                <a type="button" value="8" onclick="calcular(this)"class="waves-effect waves-light btn">8</a>
+                <a type="button" value="9" onclick="calcular(this)"class="waves-effect waves-light btn">9</a>
+                <a type="button" value="*" onclick="calcular(this)"class="waves-effect waves-light btn">*</a><br>
+                <a type="button" value="0" onclick="calcular(this)"class="waves-effect waves-light btn">0</a>
+                <a type="button" value="/" onclick="calcular(this)"class="waves-effect waves-light btn">/</a>
+                <a type="button" value="=" onclick="calcular(this)"class="waves-effect waves-light btn">=</a>
+                <a type="button" value="CE" onclick="calcular(this)"class="waves-effect waves-light btn">CE</a><br>
+
+            </div>
+        </div>
+{% endblock %}
+{% block scripts %}
+<script>
+
+    function calcular(boton){
+
+        var btn = boton.getAttribute("value");
+        console.log(btn);
+        var display = document.getElementById("display");
+
+        if(display.value=="0"){
+            display.value="";
+        }
+
+        if(btn=="="){
+            resultado=eval(display.value); 
+            display.value=resultado;
+        }else{
+            if(btn=="CE"){
+                display.value=0;
+            }else{
+                display.value=display.value+btn;
+            }
+        }
+    }
+
+</script>
+{% endblock %}

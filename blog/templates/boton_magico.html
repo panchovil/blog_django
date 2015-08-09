@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<html>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <head>
+        <h1>La pagina se esta redireccionando</h1>
+    </head>
+    <body>
+        <div class="boton_magico">
+            <input type="button" id="magico" value="Continuar" onmouseover="troll()" onclick="win()" ></input>
+        </div>
+    </body>
+
+</html>
+<script>
+    function troll(){
+        document.getElementById("magico").style.marginTop = Math.floor((Math.random()*400) + 1);
+        document.getElementById("magico").style.marginLeft = Math.floor((Math.random()*400) + 1);
+    }
+    function win(){
+        alert("¡Ganaste!");
+        location.href="{% url 'blog:inicio' %}";
+    }
+</script>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block titulo %}
+<title>Contactos</title>
+{% endblock %}
+{% block title %}
+Contactos
+{% endblock %}
+{% block content %}
+<div class="container ">
+    <form >
+        <div class="input-field col s6">
+            <input id="ContactosNombre" type="text" name="Nombre"></input>
+            <label for="ContactosNombre">Nombre</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="ContactosEmail" type="text" name="Email"></input>
+            <label for="ContactosEmail">Email</label>
+        </div>
+        <div class="input-field col s6">
+            <textarea id="ContactosContenido" class="materialize-textarea" type="text" name="Mensaje"></textarea><br>
+            <label for="ContactosContenido">Mensaje</label>
+        </div>
+    <div class="center-align">
+        <a type="submit" value="Enviar" class="waves-effect waves-light btn">Enviar</a>
+    </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+<html>	
+    <head>
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+{% extends 'base.html' %}
+{% block titulo %}
+{% load staticfiles%}
+<title>Image</title>
+{% endblock %}
+{% block title %}
+Imagenes
+{% endblock %}
+{% block content %}
+
+
+        <div class="content" align="center">
+            <h3>Imagenes Aleatorias</h3>
+            <progress id="barra" max="100" value="0"></progress><br><br>
+            <img id="img" height = "400px" width="400px" src="{% static 'img/1.jpg'%}"/>
+
+        </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    var images = ["1.jpg","2.jpg","3.jpg","4.jpg"];
+    var tiempo = setInterval(function(){load();},1000);
+
+    $(document).ready(function(){
+        load();
+    });
+
+    var barra = document.getElementById("barra");
+    var img = document.getElementById("img");
+    a = 0;
+    i = 1;
+    var time = setInterval(load, 50);
+
+    function load(){
+        a +=5 ;
+        barra.value = a;
+        if (barra.value == 100){
+            a=0;
+            barra.value = a;
+            img.setAttribute("src","{% static  'img/' %}"+images[i]);
+            i++;
+            if(i==4){i=0}
+        }
+    }
+</script>
+{% endblock %}

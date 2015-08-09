@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block titulo %}
+<title>Post</title>
+{% endblock %}
+{% block title %}
+Inicio
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="center-align" >
+        <div class="card teal lighten-2">
+            <h4>{{post.titulo}}</h4><br>
+            <p>{{post.fecha}}</p><br> 
+            <p>{{post.resumen}}</p><br>
+            <textarea class="materialize-textarea">{{post.contenido}}</textarea><br>       
+        </div>
+    </div>
+</div>
+<div class="container" style="text-align:center">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Nombre" id="nombre" name="nombre" type="text" class="validate">
+                <label for="nombre">First Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="mensaje" name="mensaje" type="text" class="validate">
+                <label for="mensaje">Comentario</label>
+            </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+            <i class="material-icons" id="send">ENVIAR</i>
+        </button>
+</div>
+<div id="mensajes">
+    {% include "mensajes.html" %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    $("#send").click(function(){        
+
+        var data={
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            id:'{{post.id}}',
+            nombre:$('#nombre').val(),
+            mensaje:$('#mensaje').val(),
+        }
+        $.ajax({
+            type: "POST",
+            url: "{% url 'blog:mensaje' %}",
+            data: data,
+            success: function(result){
+                $("#mensajes").html(result);
+            },
+            error: function(err){
+                console.log("ERRRORRRR");
+                console.log(err.responseText);
+            },
+        });
+    });
+</script>
+{% endblock %}

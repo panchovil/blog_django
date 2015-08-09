@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block titulo %}
+<title>Inicio</title>
+{% endblock %}
+{% block title %}
+Inicio
+{% endblock %}
+{% block content %}
+<div class="container center-align">
+{% for entrada in entradas %}
+<div class=" card-panel teal lighten-2">           
+    <h4><a href="{% url 'blog:verpost' entrada.id %}">{{entrada.titulo}}</a></h3><br>
+    <p>{{entrada.resumen}}</p><br>   
+</div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load staticfiles %}
+<html>	
+    <head>
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <!-----------------------------------------------| IMPORTAR |-------------------------------------------------------------->
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" href="{% static 	'css/materialize.css' %}">
+        <link rel="stylesheet" href="{% static 	'css/style.css' %}">
+
+{% block titulo %}
+
+        {% endblock %}
+    </head>
+    <body class="cyan darken-3">
+
+        <!-----------------------------------------------| IMPORTAR JS |-------------------------------------------------------------->
+        <script type="text/javascript" src="{% static 'js/jquery-1.11.3.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+        <!-----------------------------------------------| IMPORTAR JS |-------------------------------------------------------------->
+        <div class="cabeza">
+            <h1 style="color:white">El blog de Chucho</h1>
+        </div>
+        <div style="margin_right:300px;">
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="{% url 'blog:calculadora' %}">Calcu</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url 'blog:conversor' %}">Conver</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url 'blog:cronometro' %}">Crono</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url 'blog:boton_magico' %}">Chiste</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url 'blog:image' %}">Imagenes</a></li>
+            </ul>
+        </div>
+        <nav>
+            <div class="nav-wrapper teal lighten-2">
+                <a href="#" class="brand-logo left " >{% block title %}{% endblock %}</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{% url 'blog:inicio' %}" >Inicio</a></li>
+                    <li><a href="{% url 'blog:contactos' %}" >Contactos</a></li>
+                    <li><a href="{% url 'blog:cv' %}" >Curriculum</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Ejercicios</a>
+                </ul>
+            </div>
+        </nav>
+        {% block content %}
+        {% endblock %}
+        <footer class="page-footer"/>
+            <div class="teal lighten-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col l6 s12">
+                            <h5 class="white-text">Hola</h5>
+                            <p class="grey-text text-lighten-4">En este lugar tendria que haber algo interesante, pero no se que poner</p>
+                        </div>
+                        <div class="col l4 offset-l2 s12">
+                            <h5 class="white-text">Seguime en</h5>
+                            <ul>
+                                <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/?_rdr">Facebook</a></li>
+                                <li><a class="grey-text text-lighten-3" href="https://twitter.com/?lang=es">Twitter</a></li>
+                                <li><a class="grey-text text-lighten-3" href="https://plus.google.com/?hl=es">Google+</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="container">
+                        "Live slow, Die whenever."
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>   
+{% block scripts %}
+            
+    {% endblock %}
+
+</html>

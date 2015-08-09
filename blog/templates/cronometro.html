@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block titulo %}
+<title>Cronometro</title>
+{% endblock %}
+{% block title %}
+Cronometro
+{% endblock %}
+{% block content %}
+        <div class="container">
+            <div class="center-align" >
+                <div class="nav-wrapper teal lighten-2">
+                    <h2>Cronometro</h2>
+                    <h4><span   id="horas">00</span>:<span id="minutos">00</span>:<span id="segundos">00</span>:<span id="decimas">00</span></h4>
+                    <br>
+
+                    <a id="start" value="Start" onclick="startCrono()" class="waves-effect waves-light btn" disable="fa"><i class="mdi-av-play-circle-outline"></i></a>
+                    <a id="stop" value="Stop" onclick="stopCrono()" class="waves-effect waves-light btn" disabled="true"><i class="mdi-av-pause-circle-outline"></i></a>
+                    <a id="restart" value="Reset" onclick="restart()" class="waves-effect waves-light btn"><i class="mdi-action-history
+                        "></i></a>
+                </div>        
+            </div>
+        </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    var crono;
+
+    function restart(){
+        document.getElementById("horas").innerHTML="00";
+        document.getElementById("minutos").innerHTML="00";
+        document.getElementById("segundos").innerHTML="00";
+        document.getElementById("decimas").innerHTML="00";
+    }
+
+    function startCrono(){
+        document.getElementById("start").disabled=true;
+        document.getElementById("stop").disabled=false;
+        document.getElementById("restart").disabled=true;
+
+        var horasElem = document.getElementById("horas");
+        var minutosElem = document.getElementById("minutos");
+        var segundosElem = document.getElementById("segundos");
+        var decimasElem = document.getElementById("decimas");
+
+        var horas;
+        var minutos;
+        var segundos;
+        var decimas;
+
+        if(horasElem.innerHTML!=0 | minutosElem.innerHTML!=0 | segundosElem.innerHTML!=0| decimasElem.innerHTML!=0){
+            horas = parseInt(horasElem.innerHTML);
+            minutos = parseInt(minutosElem.innerHTML);
+            segundos = parseInt(segundosElem.innerHTML);
+            decimas = parseInt(decimasElem.innerHTML);
+        }else{
+            horas = 0;
+            minutos = 0;
+            segundos = 0;
+            decimas = 0;
+        }
+
+        crono = window.setInterval(function(){
+            if(decimas!=10){
+                decimas++;}
+            else{
+                decimas=00;segundos++;
+                if(segundos==60){
+                    segundos=00;minutos++;
+                    if(minutos==60){
+                        minutos=00;horas++;
+                    }
+                }
+            }
+            if(horas<=9){horasElem.innerHTML="0"+horas;}else{horasElem.innerHTML=horas;}
+            if(minutos<=9){minutosElem.innerHTML="0"+minutos;}else{minutosElem.innerHTML=minutos;}
+            if(segundos<=9){segundosElem.innerHTML="0"+segundos;}else{segundosElem.innerHTML=segundos;}
+            if(decimas<=9){decimasElem.innerHTML="0"+decimas;}else{decimasElem.innerHTML=decimas;}},100);
+    }
+
+    function stopCrono(){
+        document.getElementById("stop").disabled=true;
+        document.getElementById("start").disabled=false;
+        document.getElementById("restart").disabled=false;
+        clearInterval(crono);
+    }
+
+</script>
+{% endblock %}
